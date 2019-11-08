@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import HelloWorld from './components/HelloWorld.js'
+import CityList from './components/CityList.jsx'
 import './App.css';
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route exact path="/" component={HelloWorld}/>
+          <Route path="/city" component={CityList} />
+          <Route exact path="/city/:id" />
         </Switch>
       </Router>
     </div>
