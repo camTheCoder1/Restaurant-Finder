@@ -16,7 +16,7 @@ class App extends Component {
         <Banner />
         <Router>
           <Switch>
-            <Route exact path='/' component={Search} />
+            <Route exact path='/search' component={Search} />
             <Route exact path='/cities' component={Cities} />
             <Route exact path='/cities/:cityId' component={SingleCity} />
             <Route exact path='/restaurants' component={Restaurants} />
