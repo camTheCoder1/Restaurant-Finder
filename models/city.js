@@ -1,39 +1,32 @@
-
 const mongoose = require('./connection.js')
 
 const CitySchema = new mongoose.Schema({
-    cityName: String,
-    state: String
+    name: String,
 })
 
 const CityCollection = mongoose.model('City', CitySchema)
 
-//getAllCities
+//getAll
 const getAllCities = () => {
-    return CityCollection.find({});
+    return CityCollection.find()
 }
-
-//getOneCity
+//getOne
 const getCity = (cityId) => {
-    return CityCollection.findById(cityId);
+    return CityCollection.findById(cityId)
 }
-
-//createCity
+//create
 const addNewCity = (newCity) => {
-    return CityCollection.create(newCity);
-
+    return CityCollection.create(newCity)
 }
-
-//updateCity
-const updateCity = (cityId, updateCity) => {
-    return CityCollection.updateOne({ _id: cityId }, updateCity)
+//update
+const updateCity = (cityId, updatedCity) => {
+    return CityCollection.updateOne({ _id: cityId }, updatedCity)
 }
-
-//deleteCity
+//delete
 const deleteCity = (cityId) => {
     return CityCollection.deleteOne({ _id: cityId })
-
 }
+
 
 module.exports = {
     getAllCities,
@@ -41,4 +34,4 @@ module.exports = {
     addNewCity,
     updateCity,
     deleteCity
-};
+}
