@@ -1,80 +1,85 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import M from 'materialize-css';
 
 
 export default class Cities extends Component {
 
     state = {
-        cityList: [],
-        newShowForm: true,
-        newCity: {
+        cityList: [], newCity: {
             name: ''
-        }
+        },
+        newCityForm: false
     }
 
     componentDidMount() {
-        this.refreshList()
+        this.getAllCities()
     }
 
-    refreshList = () => {
+    getAllCities = () => {
         axios.get('/api/cities')
             .then((res) => {
                 this.setState({ cityList: res.data })
             })
     }
 
-    createNewCity = (event) => {
+    toggleNewCityForm = () => {
+        this.setState((state) => {
+            return { newCityForm: !state.newCityForm }
+        })
+    }
+
+    handleInputChange = (event) => {
+        const copiedCity = { ...this.state.newCity }
+        copiedCity[event.target.name] = event.target.value
+        this.setState({ newCity: copiedCity })
+    }
+
+    submit = (event) => {
         event.preventDefault()
 
         axios.post('/api/cities', this.state.newCity)
             .then(() => {
-                this.refreshList()
+                this.setState({ newCityForm: false })
+                this.getAllCities()
             })
-    }
-
-    toggleNewCityForm = () => {
-        const newCityForm = !this.state.newCityForm
-        this.setState({ newCityForm })
-    }
-
-    handleInputChange = (event) => {
-        const newCity = { ...this.state.newCity }
-        newCity[event.target.name] = event.target.value
-        this.setState({ newCity: newCity })
     }
 
     render() {
         const allCities = Object.keys(this.state.cityList).map((city) => {
             return (
                 <div>
-                    <h2><Link to={`/${city._id}`} >
+                    <Link key={city._id} to={`/cities/${city._id}`} >
                         {city.name}
-                    </Link></h2>
-
+                    </Link>
                 </div>
             )
         })
 
         return (
-            <div>
-                <h1>Cities</h1>
-                <div>
-                    {allCities}
+            this.state.newCityForm
+                ? <form onSubmit={this.submit}>
+                    <label htmlFor="new-city-name">City</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="new-city-name"
+                        onChange={this.handleInputChange}
+                        value={this.state.newCity.name}
+                    />
+
+                    <input type="submit" value="Add City" />
+                </form>
+                : <div>
+                    <div>
+                        <button onClick={this.toggleNewCityForm}>Create New City</button>
+                    </div>
+                    {/* Accessing the value of message from the state object */}
+                    <div id="city-list">
+                        {allCities}
+                    </div>
                 </div>
-                <span>
-                    <button onClick={this.toggleNewCityForm}>
-                        {this.state.newCityForm ? 'New City' : 'Hide'}
-                    </button>
-                    {this.state.newCityForm ? null : <form onSubmit={(event) => { this.createNewCity(event); this.toggleNewCityForm() }}>
-                        <input
-                            type="text"
-                            name="name" placeholder="Name"
-                            onChange={this.handleInputChange} />
-                        <input type="submit" />
-                    </form>}
-                </span>
-            </div>
         )
     }
 }

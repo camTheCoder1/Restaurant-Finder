@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import M from 'materialize-css';
+
 
 export default class SingleCity extends Component {
 
@@ -21,6 +23,13 @@ export default class SingleCity extends Component {
             .then((res) => {
                 this.setState(res.data)
             })
+    }
+
+    // update state on input typing
+    onCityFormChange = (event) => {
+        const previousState = { ...this.state }
+        previousState[event.target.name] = event.target.value
+        this.setState(previousState)
     }
 
     updateCity = (event) => {
@@ -57,6 +66,8 @@ export default class SingleCity extends Component {
         this.setState({ cityForm })
     }
 
+
+
     deleteCity = (event) => {
         event.preventDefault()
         const cityId = this.props.match.params.cityId
@@ -72,39 +83,44 @@ export default class SingleCity extends Component {
         this.setState({ updatedCity: updatedCity })
     }
 
-
+    //render redirect
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return (<Redirect to="/" />)
+        }
+    }
+    setRedirect = () => {
+        this.setState({ redirect: true })
+    }
 
     render() {
         return (
-            this.state.redirectToHome ? <Redirect to="/" /> :
-                <div>
-                    <div>
-                        <h1>{this.state.name}</h1>
-                        <h3>Restaurants</h3>
-                        {this.state.restaurants.map((restaurant) => {
-                            return (
-                                <div>
-                                    <p>{restaurant.name}</p>
-                                </div>)
-                        })}
-                    </div>
-                    <span>
-                        <button onClick={this.toggleUpdateCityForm}>
-                            {this.state.cityForm ? 'Update City' : 'Hide'}
-                        </button>
-                        {this.state.cityForm ? null : <form onSubmit={(event) => { this.updateCity(event); this.toggleUpdateCityForm() }}>
-                            <input type="text" defaultValue={this.state.name} value={this.state.updatedCity.name} name="name" placeholder="Name" onChange={this.handleInputChange} />
-                            <input type="submit" />
-                        </form>}
-                    </span>
-                    <span>
-                        <button onClick={this.deleteCity}>Delete</button>
-                        <Link to={"/"}>
-                            <button>Home</button>
-                        </Link>
-                    </span>
-                </div>
+            <div>
 
+                {this.renderRedirect()}
+
+                <h1>
+                    {this.state.name}
+                </h1>
+                <h4>Restaurants
+                    {this.state.restaurants}
+                </h4>
+
+                <button onClick={this.deleteCity}>Delete</button>
+
+                {this.state.formToggle
+                    ?
+                    <button onClick={this.toggleUpdateCityForm}>Update City</button>
+                    :
+                    <div className="create-form">
+                        <button onClick={this.toggleUpdateCityForm}>Back</button>
+                        <form onSubmit={this.updateCity}>
+                            <input type="text" name="name" placeholder="name" onChange={this.onCityFormChange} />
+                            <input type="submit" />
+                        </form>
+                    </div>}
+
+            </div>
         )
     }
 }
