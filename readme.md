@@ -4,3 +4,18 @@ This app was created to find the best and most convinent restaurants, based on t
 
 # Deployed App
 Heroku app: [Here](https://fathomless-brook-06026.herokuapp.com/cities)
+
+# Wireframe
+![wireframe](screenshots/project3-wireframe.jpg)
+
+# ERD 
+![project3-erd](screenshots/project3-erd.jpg)
+
+# Version
+Version 1.0
+
+# Technologies Used
+1. Mongo.DB
+2. Express.js
+3. React
+4. Node.js
