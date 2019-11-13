@@ -7,3 +7,7 @@ Heroku app: [Here](https://fathomless-brook-06026.herokuapp.com/cities)
 
 # Wireframe
 ![wireframe](screenshots/project3-wireframe.jpg)
+
+# ERD 
+![project3-erd](screenshots/project3-erd.jpg)
+
