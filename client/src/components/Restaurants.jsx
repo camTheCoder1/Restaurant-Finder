@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Restaurant from './Restaurant'
+import ButtonStyle from './styledComponents/ButtonStyle'
+
 import M from 'materialize-css';
 
 
