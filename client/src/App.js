@@ -4,6 +4,8 @@ import Cities from './components/Cities'
 import SingleCity from './components/SingleCity'
 import Restaurants from './components/Restaurants'
 import Restaurant from './components/Restaurant'
+import Banner from './components/Banner'
+
 import './App.css';
 
 
@@ -11,6 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <Banner />
         <Router>
           <Switch>
             <Route exact path='/cities' component={Cities} />
