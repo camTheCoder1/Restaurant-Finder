@@ -13,3 +13,9 @@ Heroku app: [Here](https://fathomless-brook-06026.herokuapp.com/cities)
 
 # Version
 Version 1.0
+
+# Technologies Used
+1. Mongo.DB
+2. Express.js
+3. React
+4. Node.js
