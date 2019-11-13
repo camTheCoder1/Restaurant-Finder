@@ -5,7 +5,7 @@ import SingleCity from './components/SingleCity'
 import Restaurants from './components/Restaurants'
 import Restaurant from './components/Restaurant'
 import Banner from './components/Banner'
-import Search from '/components/Search'
+import Search from './components/Search'
 import './App.css';
 
 
