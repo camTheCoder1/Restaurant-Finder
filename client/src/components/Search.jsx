@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Search.css';
 import axios from 'axios';
-import PageNavigation from './PageNavigation';
+// import PageNavigation from './PageNavigation';
 
 class Search extends React.Component {
 
@@ -166,14 +166,6 @@ class Search extends React.Component {
                 {/*	Error Message*/}
                 {message && <p className="message">{message}</p>}
 
-                {/*Navigation*/}
-                <PageNavigation
-                    loading={loading}
-                    showPrevLink={showPrevLink}
-                    showNextLink={showNextLink}
-                    handlePrevClick={() => this.handlePageClick('prev', this.handlePageClick.event)}
-                    handleNextClick={() => this.handlePageClick('next', this.handlePageClick.event)}
-                />
 
                 {/*	Result*/}
                 {this.renderSearchResults()}
