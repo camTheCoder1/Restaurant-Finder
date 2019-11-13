@@ -68,7 +68,6 @@ export default class Cities extends Component {
                         onChange={this.handleInputChange}
                         value={this.state.newCity.name}
                     />
-
                     <input type="submit" value="Add City" />
                 </form>
                 : <div>
