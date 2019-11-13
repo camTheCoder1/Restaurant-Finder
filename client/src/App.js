@@ -5,7 +5,7 @@ import SingleCity from './components/SingleCity'
 import Restaurants from './components/Restaurants'
 import Restaurant from './components/Restaurant'
 import Banner from './components/Banner'
-
+import Search from '/components/Search'
 import './App.css';
 
 
@@ -16,6 +16,7 @@ class App extends Component {
         <Banner />
         <Router>
           <Switch>
+            <Route path="/" component={Search} />
             <Route exact path='/cities' component={Cities} />
             <Route exact path='/cities/:cityId' component={SingleCity} />
             <Route exact path='/restaurants' component={Restaurants} />
