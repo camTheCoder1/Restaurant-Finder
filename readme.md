@@ -4,3 +4,6 @@ This app was created to find the best and most convinent restaurants, based on t
 
 # Deployed App
 Heroku app: [Here](https://fathomless-brook-06026.herokuapp.com/cities)
+
+# Wireframe
+![wireframe](screenshots/project3-wireframe.jpg)
